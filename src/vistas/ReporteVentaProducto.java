@@ -67,7 +67,7 @@ public class ReporteVentaProducto extends JFrame {
 		Vector<Vector<String>> dataVentas = null;
 		try
 		{
-			dataVentas = sistema.obtenerVentasView();
+			dataVentas = sistema.obtenerVentas();
 		}
 		catch(Exception e)
 		{
@@ -109,7 +109,7 @@ public class ReporteVentaProducto extends JFrame {
 		Vector<Vector<String>> dataProductos = null;
 		try
 		{
-			dataProductos = sistema.obtenerProductosView();
+			dataProductos = sistema.obtenerProductos();
 		}
 		catch(Exception e)
 		{
