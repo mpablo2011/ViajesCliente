@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 
 public class buscarProductoView extends JFrame {
@@ -74,7 +75,13 @@ public class buscarProductoView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				int codprod = Integer.parseInt(codProducto.getText());
-				ProductoView pv = sistema.getProductoPorCodigo(codprod);
+				ProductoView pv = null;
+				try {
+					pv = sistema.getProductoPorCodigo(codprod);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				if (pv == null)
 				{
@@ -113,7 +120,12 @@ public class buscarProductoView extends JFrame {
 				else {
 					int codprod = Integer.parseInt(codProducto.getText());
 					int cant = Integer.parseInt(cantField.getText());
-					sistema.agregarProducto(codprod, cant);
+					try {
+						sistema.agregarProducto(codprod, cant);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					AltaVentasView avv = new AltaVentasView();
 					avv.setVisible(true);
 					buscarProductoView.this.setVisible(false);

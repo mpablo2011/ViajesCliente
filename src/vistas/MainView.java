@@ -14,6 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 
 public class MainView extends JFrame {
@@ -46,7 +47,12 @@ public class MainView extends JFrame {
 	 */
 	public MainView() {
 		sis = Cliente.getInstancia();
-		sis.cargaInicial();
+		try {
+			sis.cargaInicial();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		

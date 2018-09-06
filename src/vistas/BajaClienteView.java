@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 
 public class BajaClienteView extends JFrame {
@@ -83,7 +84,13 @@ public class BajaClienteView extends JFrame {
 					
 					int dni = Integer.parseInt(dniField.getText());
 					
-					int resultado = sistema.bajaCliente(dni);
+					int resultado = 0;
+					try {
+						resultado = sistema.bajaCliente(dni);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 					if (resultado == 1) {
 		            	JOptionPane pane = new JOptionPane("Cliente eliminado de forma correcta");
