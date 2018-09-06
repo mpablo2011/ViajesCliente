@@ -1,4 +1,4 @@
-package Views;
+package vistas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

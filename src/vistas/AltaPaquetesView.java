@@ -1,4 +1,4 @@
-package Views;
+package vistas;
 
 import java.awt.Color;
 import java.awt.EventQueue;
