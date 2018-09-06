@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import app.MainSistemaDeVentas;
 import cliente.Cliente;
 import interfaz.TDAManejoDatos;
 
@@ -24,14 +23,17 @@ import java.awt.event.ActionEvent;
 
 public class AltaVisitasView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldDesc;
 	private JTextField textFieldFecha;
 	private JTextField textFieldNombre;
 	private JTextField textFieldPrecio;
 	private static TDAManejoDatos sistema;
-	
-	private MainSistemaDeVentas sis = MainSistemaDeVentas.getInstancia();
+		
 	private JTextField textFieldUbicacion;
 
 	/**
@@ -40,8 +42,7 @@ public class AltaVisitasView extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					sistema = Cliente.getInstancia();
+				try {					
 					AltaVisitasView frame = new AltaVisitasView();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -54,7 +55,8 @@ public class AltaVisitasView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AltaVisitasView() {
+	public AltaVisitasView() {		
+		sistema = Cliente.getInstancia();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

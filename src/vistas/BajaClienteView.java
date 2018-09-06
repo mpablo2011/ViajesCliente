@@ -1,6 +1,5 @@
 package vistas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -8,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import app.MainSistemaDeVentas;
 import cliente.Cliente;
 import interfaz.TDAManejoDatos;
 
@@ -23,6 +21,10 @@ import java.awt.event.ActionEvent;
 
 public class BajaClienteView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField dniField;
 	private static TDAManejoDatos sistema;
@@ -33,8 +35,7 @@ public class BajaClienteView extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					sistema = Cliente.getInstancia();
+				try {					
 					BajaClienteView frame = new BajaClienteView();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -48,6 +49,7 @@ public class BajaClienteView extends JFrame {
 	 * Create the frame.
 	 */
 	public BajaClienteView() {
+		sistema = Cliente.getInstancia();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

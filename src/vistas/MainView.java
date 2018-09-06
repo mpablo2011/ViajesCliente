@@ -18,6 +18,10 @@ import java.awt.event.ActionEvent;
 
 public class MainView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static TDAManejoDatos sis;
 
@@ -27,9 +31,7 @@ public class MainView extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					sis = Cliente.getInstancia();
-					sis.cargaInicial();
+				try {					
 					MainView frame = new MainView();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -43,6 +45,8 @@ public class MainView extends JFrame {
 	 * Create the frame.
 	 */
 	public MainView() {
+		sis = Cliente.getInstancia();
+		sis.cargaInicial();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		

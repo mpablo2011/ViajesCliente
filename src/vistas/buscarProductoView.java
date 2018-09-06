@@ -1,6 +1,5 @@
 package vistas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -8,8 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import app.MainSistemaDeVentas;
-import app.VentaController;
 import bean.Views.ProductoView;
 import cliente.Cliente;
 import interfaz.TDAManejoDatos;
@@ -25,6 +22,10 @@ import java.awt.event.ActionEvent;
 
 public class buscarProductoView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField codProducto;
 	private JTextField cantField;
@@ -37,8 +38,7 @@ public class buscarProductoView extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					sistema = Cliente.getInstancia();
+				try {					
 					buscarProductoView frame = new buscarProductoView();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -52,6 +52,7 @@ public class buscarProductoView extends JFrame {
 	 * Create the frame.
 	 */
 	public buscarProductoView() {
+		sistema = Cliente.getInstancia();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
