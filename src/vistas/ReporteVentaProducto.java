@@ -13,10 +13,15 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import app.ProductoController;
+import app.VentaController;
 import cliente.Cliente;
 import interfaz.TDAManejoDatos;
 
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ReporteVentaProducto extends JFrame {
 
@@ -140,14 +145,25 @@ public class ReporteVentaProducto extends JFrame {
 		getContentPane().add(scrollPaneProducto);		
 		
 		JLabel lblReporteDeVentas = new JLabel("Reporte de Ventas");
-		lblReporteDeVentas.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblReporteDeVentas.setBounds(15, 11, 232, 14);
+		lblReporteDeVentas.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		contentPane.add(lblReporteDeVentas);
 		
 		JLabel lblReporteDeProductos = new JLabel("Reporte de Productos");
-		lblReporteDeProductos.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		lblReporteDeProductos.setBounds(15, 230, 220, 14);
+		lblReporteDeProductos.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		contentPane.add(lblReporteDeProductos);
+		
+		JButton btnNewButton_1 = new JButton("Volver");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ReporteVentaProducto.this.setVisible(false);
+				MainView mv = new MainView();
+				mv.setVisible(true);
+			}
+		});
+		btnNewButton_1.setBounds(376, 221, 89, 23);
+		contentPane.add(btnNewButton_1);
 		
 		//FIN GRILLA PRODUCTO
 		
