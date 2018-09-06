@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import app.MainSistemaDeVentas;
 import app.VentaController;
 import bean.Views.ProductoView;
+import cliente.Cliente;
+import interfaz.TDAManejoDatos;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,6 +29,7 @@ public class buscarProductoView extends JFrame {
 	private JTextField codProducto;
 	private JTextField cantField;
 	private JTextField descField;
+	private static TDAManejoDatos sistema;
 
 	/**
 	 * Launch the application.
@@ -35,6 +38,7 @@ public class buscarProductoView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					sistema = Cliente.getInstancia();
 					buscarProductoView frame = new buscarProductoView();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -69,7 +73,7 @@ public class buscarProductoView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				int codprod = Integer.parseInt(codProducto.getText());
-				ProductoView pv = MainSistemaDeVentas.getInstancia().getProductoPorCodigo(codprod);
+				ProductoView pv = sistema.getProductoPorCodigo(codprod);
 				
 				if (pv == null)
 				{
@@ -108,7 +112,7 @@ public class buscarProductoView extends JFrame {
 				else {
 					int codprod = Integer.parseInt(codProducto.getText());
 					int cant = Integer.parseInt(cantField.getText());
-					VentaController.getInstancia().agregarProducto(codprod, cant);
+					sistema.agregarProducto(codprod, cant);
 					AltaVentasView avv = new AltaVentasView();
 					avv.setVisible(true);
 					buscarProductoView.this.setVisible(false);

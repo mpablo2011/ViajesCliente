@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.MainSistemaDeVentas;
-import bean.Cliente;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

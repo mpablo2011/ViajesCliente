@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.MainSistemaDeVentas;
+import cliente.Cliente;
+import interfaz.TDAManejoDatos;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,6 +29,7 @@ public class AltaVisitasView extends JFrame {
 	private JTextField textFieldFecha;
 	private JTextField textFieldNombre;
 	private JTextField textFieldPrecio;
+	private static TDAManejoDatos sistema;
 	
 	private MainSistemaDeVentas sis = MainSistemaDeVentas.getInstancia();
 	private JTextField textFieldUbicacion;
@@ -38,6 +41,7 @@ public class AltaVisitasView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					sistema = Cliente.getInstancia();
 					AltaVisitasView frame = new AltaVisitasView();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -108,7 +112,7 @@ public class AltaVisitasView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try
 				{
-					sis.grabarVisita(textFieldDesc.getText(),textFieldFecha.getText(),
+					sistema.grabarVisita(textFieldDesc.getText(),textFieldFecha.getText(),
 									 textFieldNombre.getText(),textFieldUbicacion.getText(),Float.parseFloat(textFieldPrecio.getText()));
 					
 					JOptionPane pane = new JOptionPane("Visita Turistica dado de alta de forma correcta");

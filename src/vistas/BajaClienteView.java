@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.MainSistemaDeVentas;
+import cliente.Cliente;
+import interfaz.TDAManejoDatos;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +25,7 @@ public class BajaClienteView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField dniField;
+	private static TDAManejoDatos sistema;
 
 	/**
 	 * Launch the application.
@@ -31,6 +34,7 @@ public class BajaClienteView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					sistema = Cliente.getInstancia();
 					BajaClienteView frame = new BajaClienteView();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -63,7 +67,6 @@ public class BajaClienteView extends JFrame {
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainSistemaDeVentas msv = MainSistemaDeVentas.getInstancia();
 
 				String dniStr = dniField.getText();
 
@@ -78,7 +81,7 @@ public class BajaClienteView extends JFrame {
 					
 					int dni = Integer.parseInt(dniField.getText());
 					
-					int resultado = msv.bajaCliente(dni);
+					int resultado = sistema.bajaCliente(dni);
 					
 					if (resultado == 1) {
 		            	JOptionPane pane = new JOptionPane("Cliente eliminado de forma correcta");
