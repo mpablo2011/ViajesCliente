@@ -110,6 +110,7 @@ public class ReporteVentaProducto extends JFrame {
 		try
 		{
 			dataProductos = sistema.obtenerProductos();
+			System.out.println("productos -"+ dataProductos.size());
 		}
 		catch(Exception e)
 		{
