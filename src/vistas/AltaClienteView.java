@@ -1,21 +1,18 @@
 package vistas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import app.MainSistemaDeVentas;
-import bean.Cliente;
+import cliente.Cliente;
+import interfaz.TDAManejoDatos;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.JTextField;
@@ -27,12 +24,18 @@ import java.awt.event.ActionEvent;
 
 public class AltaClienteView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField nombreField;
 	private JTextField dniField;
 	private JTextField telefonoField;
 	private JTextField mailField;
-
+	
+	private TDAManejoDatos sistema;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -53,6 +56,7 @@ public class AltaClienteView extends JFrame {
 	 * Create the frame.
 	 */
 	public AltaClienteView() {
+		sistema = Cliente.getInstancia();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -103,8 +107,7 @@ public class AltaClienteView extends JFrame {
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			MainSistemaDeVentas msv = MainSistemaDeVentas.getInstancia();
+			public void actionPerformed(ActionEvent e) {			
 
 			String dniStr = dniField.getText();
 			String mail = mailField.getText();
@@ -123,7 +126,7 @@ public class AltaClienteView extends JFrame {
 				int dni = Integer.parseInt(dniField.getText());
 				int telefono = Integer.parseInt(telefonoField.getText());
 				
-				int resultado = msv.altaCliente(dni, nombre, telefono, mail);
+				int resultado = sistema.altaCliente(dni, nombre, telefono, mail);
 				
 				if (resultado == 1) {
 	            	JOptionPane pane = new JOptionPane("Cliente dado de alta de forma correcta");

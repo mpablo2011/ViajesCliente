@@ -9,7 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import app.MainSistemaDeVentas;
+import cliente.Cliente;
+import interfaz.TDAManejoDatos;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,6 +23,10 @@ import java.awt.event.ActionEvent;
 
 public class AltaAlojamientosView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldDesc;
 	private JTextField textFieldFechaDesde;
@@ -30,7 +35,7 @@ public class AltaAlojamientosView extends JFrame {
 	private JTextField textFieldPrecio;
 	private JTextField textFieldUbicacion;
 
-	private MainSistemaDeVentas sis = MainSistemaDeVentas.getInstancia();
+	private TDAManejoDatos sistema;
 	
 	/**
 	 * Launch the application.
@@ -52,6 +57,7 @@ public class AltaAlojamientosView extends JFrame {
 	 * Create the frame.
 	 */
 	public AltaAlojamientosView() {
+		sistema = Cliente.getInstancia();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -129,7 +135,7 @@ public class AltaAlojamientosView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try
 				{
-					sis.grabarAlojamiento(textFieldDesc.getText(),textFieldFechaDesde.getText(),
+					sistema.grabarAlojamiento(textFieldDesc.getText(),textFieldFechaDesde.getText(),
 										  textFieldFechaHasta.getText(),textFieldNombre.getText(),
 										  Integer.parseInt(textFieldPrecio.getText()),textFieldUbicacion.getText());
 					

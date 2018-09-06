@@ -15,10 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import app.MainSistemaDeVentas;
-import bean.Views.*;
-
 import bean.Views.ProductoView;
+import cliente.Cliente;
+import interfaz.TDAManejoDatos;
 import bean.Views.PaqueteView;
 
 public class AltaPaquetesView extends JFrame {
@@ -30,7 +29,7 @@ public class AltaPaquetesView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldDesc;
-	private MainSistemaDeVentas sis = MainSistemaDeVentas.getInstancia();
+	private TDAManejoDatos sistema;	
 	private PaqueteView paqueteView = new PaqueteView();
 
 	/**
@@ -64,6 +63,7 @@ public class AltaPaquetesView extends JFrame {
 	 * Create the frame.
 	 */
 	public AltaPaquetesView() {
+		sistema = Cliente.getInstancia();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 466, 413);
 		contentPane = new JPanel();
@@ -92,7 +92,7 @@ public class AltaPaquetesView extends JFrame {
 					{
 						paqueteView.setDescripcion(textFieldDesc.getText());
 						paqueteView.setDescuento(Integer.parseInt(textFieldDescuento.getText()));
-						sis.grabarPaquete(paqueteView);
+						sistema.grabarPaquete(paqueteView);
 						
 						JOptionPane pane = new JOptionPane("Paquete dado de alta de forma correcta");
 		            	pane.setBackground(Color.GREEN);
@@ -168,7 +168,7 @@ public class AltaPaquetesView extends JFrame {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ProductoView prod = sis.getProductoPorCodigo(Integer.parseInt(textFieldProducto.getText()));
+				ProductoView prod = sistema.getProductoPorCodigo(Integer.parseInt(textFieldProducto.getText()));
 				
 				if (prod != null)				
 				{

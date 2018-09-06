@@ -12,7 +12,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import app.MainSistemaDeVentas;
+import cliente.Cliente;
+import interfaz.TDAManejoDatos;
 
 import javax.swing.JLabel;
 
@@ -25,7 +26,7 @@ public class ReporteVentaProducto extends JFrame {
 	private JPanel contentPane;
 	private JTable tableVentas;
 	private JTable tableProducto;
-	private static MainSistemaDeVentas sistema = MainSistemaDeVentas.getInstancia();
+	private TDAManejoDatos sistema;
 
 	/**
 	 * Launch the application.
@@ -47,6 +48,7 @@ public class ReporteVentaProducto extends JFrame {
 	 * Create the frame.
 	 */
 	public ReporteVentaProducto() {
+		sistema = Cliente.getInstancia();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 480);
 		contentPane = new JPanel();
