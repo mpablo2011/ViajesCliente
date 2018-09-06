@@ -8,7 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import app.MainSistemaDeVentas;
+import cliente.Cliente;
+import interfaz.TDAManejoDatos;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -33,7 +34,8 @@ public class AltaPasajesView extends JFrame {
 	private JTextField textFieldOrigen;
 	private JTextField textFieldDestino;
 	
-	private MainSistemaDeVentas sis = MainSistemaDeVentas.getInstancia();
+	private TDAManejoDatos sistema;
+	
 
 	/**
 	 * Launch the application.
@@ -55,6 +57,8 @@ public class AltaPasajesView extends JFrame {
 	 * Create the frame.
 	 */
 	public AltaPasajesView() {
+		sistema = Cliente.getInstancia();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -132,7 +136,7 @@ public class AltaPasajesView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try
 				{
-					sis.grabarPasaje(textFieldDesc.getText(),textFieldFecha.getText(),
+					sistema.grabarPasaje(textFieldDesc.getText(),textFieldFecha.getText(),
 									  textFieldAerolinea.getText(),textFieldOrigen.getText(),
 									  textFieldDestino.getText(),Float.parseFloat(textFieldPrecio.getText()));
 					

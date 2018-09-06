@@ -1,8 +1,6 @@
 package vistas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,12 +9,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import app.VentaController;
-import bean.Productos;
 import bean.Views.ClienteView;
 import bean.Views.VentaView;
+import cliente.Cliente;
+import interfaz.TDAManejoDatos;
 
-import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,11 +29,17 @@ import javax.swing.JScrollPane;
 
 public class AltaVentasView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField dniField;
 	private JTable table;
 	private JTextField precioTotField;
 	private JTextField clienteNombreField;
+	
+	private TDAManejoDatos sistema;
 
 	/**
 	 * Launch the application.
@@ -58,6 +61,7 @@ public class AltaVentasView extends JFrame {
 	 * Create the frame.
 	 */
 	public AltaVentasView() {
+		sistema = Cliente.getInstancia();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 511, 484);
 		contentPane = new JPanel();
@@ -90,14 +94,11 @@ public class AltaVentasView extends JFrame {
 				}
 				else {
 					
-					int dni = Integer.parseInt(dniField.getText());
-					
-					VentaController vtc = VentaController.getInstancia();
-					
-					int resultado = vtc.VincularClienteAVenta(dni);
+					int dni = Integer.parseInt(dniField.getText());													
+					int resultado = sistema.VincularClienteAVenta(dni);
 					
 					if (resultado == 1) {
-						ClienteView c = vtc.getClienteView();
+						ClienteView c = sistema.getClienteView();
 						clienteNombreField.setText(c.getNombre());
 		            	JOptionPane pane = new JOptionPane("Cliente vinculado de forma correcta");
 		            	pane.setBackground(Color.GREEN);
@@ -135,7 +136,7 @@ public class AltaVentasView extends JFrame {
 		columnas.add("Codigo Producto");
 		columnas.add("Discripción");
 		columnas.add("Cantidad");
-		Vector data = VentaController.getInstancia().getItemVentaVector();
+		Vector data = sistema.getItemVentaVector();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 115, 460, 131);
@@ -169,7 +170,7 @@ public class AltaVentasView extends JFrame {
 		precioTotField.setBounds(134, 314, 148, 22);
 		contentPane.add(precioTotField);
 		precioTotField.setColumns(10);
-		VentaView vw = VentaController.getInstancia().getVentaView();
+		VentaView vw = sistema.getVentaView();
 		if (vw == null) 
 		{
 			precioTotField.setText("0");
@@ -194,7 +195,7 @@ public class AltaVentasView extends JFrame {
 		JButton btnRegistrarVenta = new JButton("Registrar Venta");
 		btnRegistrarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				VentaController.getInstancia().grabarVenta();
+				sistema.grabarVenta();
 				
             	JOptionPane pane = new JOptionPane("Venta registrada de forma satisfactoria.");
             	pane.setBackground(Color.GREEN);
@@ -215,9 +216,8 @@ public class AltaVentasView extends JFrame {
 		clienteNombreField.setBounds(97, 50, 185, 22);
 		contentPane.add(clienteNombreField);
 		clienteNombreField.setColumns(10);
-		
-		VentaController vtc = VentaController.getInstancia();
-		ClienteView c = vtc.getClienteView();
+				
+		ClienteView c = sistema.getClienteView();
 		
 		if (c!=null)
 		{
