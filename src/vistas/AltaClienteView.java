@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 
 public class AltaClienteView extends JFrame {
@@ -129,7 +130,13 @@ public class AltaClienteView extends JFrame {
 				int dni = Integer.parseInt(dniField.getText());
 				int telefono = Integer.parseInt(telefonoField.getText());
 				
-				int resultado = sistema.altaCliente(dni, nombre, telefono, mail);
+				int resultado = 0;
+				try {
+					resultado = sistema.altaCliente(dni, nombre, telefono, mail);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				if (resultado == 1) {
 	            	JOptionPane pane = new JOptionPane("Cliente dado de alta de forma correcta");
