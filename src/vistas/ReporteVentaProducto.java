@@ -65,7 +65,7 @@ public class ReporteVentaProducto extends JFrame {
 		columnasVentas.add("Cliente");
 		columnasVentas.add("Fecha");
 		columnasVentas.add("Total");
-		Vector dataVentas = null;
+		Vector<Vector<String>> dataVentas = null;
 		try
 		{
 			dataVentas = sistema.obtenerVentasView();

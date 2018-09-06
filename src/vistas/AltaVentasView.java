@@ -149,7 +149,7 @@ public class AltaVentasView extends JFrame {
 		columnas.add("Codigo Producto");
 		columnas.add("Discripción");
 		columnas.add("Cantidad");
-		Vector data = null;
+		Vector<Vector<String>> data = null;
 		try {
 			data = sistema.getItemVentaVector();
 		} catch (RemoteException e1) {
