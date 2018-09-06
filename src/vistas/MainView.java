@@ -116,7 +116,14 @@ public class MainView extends JFrame {
 		});
 		mnNewMenu_1.add(mntmNuevaVenta);
 		
-		JMenuItem mntmListarVtasX = new JMenuItem("Ventas por cliente");
+		JMenuItem mntmListarVtasX = new JMenuItem("Reporte de Ventas y Productos");
+		mntmListarVtasX.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ReporteVentaProducto rpv = new ReporteVentaProducto();
+				rpv.setVisible(true);
+				MainView.this.setVisible(false);
+			}
+		});
 		mnNewMenu_1.add(mntmListarVtasX);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
