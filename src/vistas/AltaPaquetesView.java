@@ -26,8 +26,10 @@ public class AltaPaquetesView extends JFrame {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1001316259881786173L;
-
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private JPanel contentPane;
 	private JTextField textFieldDesc;
 	private TDAManejoDatos sistema;	

@@ -1,9 +1,8 @@
 package cliente;
 
 import java.rmi.Naming;
-
 import interfaz.TDAManejoDatos;
-import vistas.MainView;;
+import vistas.MainView;
 
 public class Cliente {
 	private static TDAManejoDatos manejoDatos;
@@ -16,7 +15,7 @@ public class Cliente {
 
 		try {
 			manejoDatos = (TDAManejoDatos) Naming
-					.lookup("//127.0.0.1/clasificados");
+					.lookup("//localhost/GestionViajes");
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -25,7 +24,7 @@ public class Cliente {
 	}
 
 	public Cliente() {
-		if (getStub()) {
+		if (getStub()) {			
 			MainView menu = new MainView();
 			menu.setVisible(true);
 		}

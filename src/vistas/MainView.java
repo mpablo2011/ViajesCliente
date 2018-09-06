@@ -47,12 +47,7 @@ public class MainView extends JFrame {
 	 */
 	public MainView() {
 		sis = Cliente.getInstancia();
-		try {
-			sis.cargaInicial();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
