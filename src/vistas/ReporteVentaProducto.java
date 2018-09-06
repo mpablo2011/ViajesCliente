@@ -13,7 +13,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import bean.Views.VentaView;
 import cliente.Cliente;
 import interfaz.TDAManejoDatos;
 
@@ -84,7 +83,7 @@ public class ReporteVentaProducto extends JFrame {
 		};
 
 		// creamos la Table basados en el modelo de datos que hemos creado
-		JTable tableVentas = new JTable(modeloVentas);
+		tableVentas = new JTable(modeloVentas);
 		tableVentas.setEnabled(false);
 
 		// ordenacion de filas (por defecto, al ser tipos primitivos)
@@ -107,7 +106,7 @@ public class ReporteVentaProducto extends JFrame {
 		columnasProductos.add("Codigo");
 		columnasProductos.add("Descripcion");
 		columnasProductos.add("Precio");
-		Vector dataProductos = null;
+		Vector<Vector<String>> dataProductos = null;
 		try
 		{
 			dataProductos = sistema.obtenerProductosView();
@@ -126,7 +125,7 @@ public class ReporteVentaProducto extends JFrame {
 		};
 
 		// creamos la Table basados en el modelo de datos que hemos creado
-		JTable tableProducto = new JTable(modeloProducto);
+		tableProducto = new JTable(modeloProducto);
 		tableProducto.setEnabled(false);
 
 		// ordenacion de filas (por defecto, al ser tipos primitivos)
