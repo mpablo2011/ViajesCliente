@@ -59,7 +59,7 @@ public class ReporteVentaProducto extends JFrame {
 		Object[][] dataVentas = null;
 		try
 		{
-			columnasVentas = null;//CtrlABMListas.getInstancia().buscarListas(CtrlSesion.getInstancia().getUsuarioLogueado());
+			dataVentas = sistema.getVentas();
 		}
 		catch(Exception e)
 		{
@@ -98,7 +98,7 @@ public class ReporteVentaProducto extends JFrame {
 		Object[][] dataProductos = null;
 		try
 		{
-			dataProductos = null;//CtrlABMListas.getInstancia().buscarListas(CtrlSesion.getInstancia().getUsuarioLogueado());
+			dataProductos = sistema.getProductos();
 		}
 		catch(Exception e)
 		{
