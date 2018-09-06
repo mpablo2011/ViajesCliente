@@ -2,6 +2,7 @@ package vistas;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import bean.Views.VentaView;
 import cliente.Cliente;
 import interfaz.TDAManejoDatos;
 
@@ -57,11 +59,16 @@ public class ReporteVentaProducto extends JFrame {
 		
 		//INICIO GRILLA VENTAS
 		
-		String[] columnasVentas = {"Id", "DNI", "Cliente","Fecha","Total"};
-		Object[][] dataVentas = null;
+		Vector<String> columnasVentas = new Vector<String>(); 
+		columnasVentas.add("Id");
+		columnasVentas.add("DNI");
+		columnasVentas.add("Cliente");
+		columnasVentas.add("Fecha");
+		columnasVentas.add("Total");
+		Vector dataVentas = null;
 		try
 		{
-			dataVentas = sistema.getVentas();
+			dataVentas = sistema.obtenerVentasView();
 		}
 		catch(Exception e)
 		{
@@ -96,11 +103,14 @@ public class ReporteVentaProducto extends JFrame {
 		
 		//INICIO GRILLA PRODUCTO
 		
-		String[] columnasProductos = {"Codigo", "Descripcion", "Precio"};
-		Object[][] dataProductos = null;
+		Vector<String> columnasProductos = new Vector<String>();
+		columnasProductos.add("Codigo");
+		columnasProductos.add("Descripcion");
+		columnasProductos.add("Precio");
+		Vector dataProductos = null;
 		try
 		{
-			dataProductos = sistema.getProductos();
+			dataProductos = sistema.obtenerProductosView();
 		}
 		catch(Exception e)
 		{
