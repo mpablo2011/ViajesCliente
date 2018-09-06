@@ -1,6 +1,5 @@
 package vistas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,9 +12,7 @@ import interfaz.TDAManejoDatos;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.JTextField;
