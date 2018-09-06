@@ -114,8 +114,7 @@ public class ReporteVentaProducto extends JFrame {
 		Vector<Vector<String>> dataProductos = null;
 		try
 		{
-			dataProductos = sistema.obtenerProductos();
-			System.out.println("productos -"+ dataProductos.size());
+			dataProductos = sistema.obtenerProductos();			
 		}
 		catch(Exception e)
 		{
