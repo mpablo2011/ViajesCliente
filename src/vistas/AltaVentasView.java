@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 
@@ -95,10 +96,22 @@ public class AltaVentasView extends JFrame {
 				else {
 					
 					int dni = Integer.parseInt(dniField.getText());													
-					int resultado = sistema.VincularClienteAVenta(dni);
+					int resultado = 0;
+					try {
+						resultado = sistema.VincularClienteAVenta(dni);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 					if (resultado == 1) {
-						ClienteView c = sistema.getClienteView();
+						ClienteView c = null;
+						try {
+							c = sistema.getClienteView();
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						clienteNombreField.setText(c.getNombre());
 		            	JOptionPane pane = new JOptionPane("Cliente vinculado de forma correcta");
 		            	pane.setBackground(Color.GREEN);
@@ -136,7 +149,13 @@ public class AltaVentasView extends JFrame {
 		columnas.add("Codigo Producto");
 		columnas.add("Discripción");
 		columnas.add("Cantidad");
-		Vector data = sistema.getItemVentaVector();
+		Vector data = null;
+		try {
+			data = sistema.getItemVentaVector();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 115, 460, 131);
@@ -170,7 +189,13 @@ public class AltaVentasView extends JFrame {
 		precioTotField.setBounds(134, 314, 148, 22);
 		contentPane.add(precioTotField);
 		precioTotField.setColumns(10);
-		VentaView vw = sistema.getVentaView();
+		VentaView vw = null;
+		try {
+			vw = sistema.getVentaView();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (vw == null) 
 		{
 			precioTotField.setText("0");
@@ -195,7 +220,12 @@ public class AltaVentasView extends JFrame {
 		JButton btnRegistrarVenta = new JButton("Registrar Venta");
 		btnRegistrarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sistema.grabarVenta();
+				try {
+					sistema.grabarVenta();
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
             	JOptionPane pane = new JOptionPane("Venta registrada de forma satisfactoria.");
             	pane.setBackground(Color.GREEN);
@@ -217,7 +247,13 @@ public class AltaVentasView extends JFrame {
 		contentPane.add(clienteNombreField);
 		clienteNombreField.setColumns(10);
 				
-		ClienteView c = sistema.getClienteView();
+		ClienteView c = null;
+		try {
+			c = sistema.getClienteView();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		if (c!=null)
 		{

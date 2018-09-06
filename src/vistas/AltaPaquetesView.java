@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -168,7 +169,16 @@ public class AltaPaquetesView extends JFrame {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ProductoView prod = sistema.getProductoPorCodigo(Integer.parseInt(textFieldProducto.getText()));
+				ProductoView prod = null;
+				try {
+					prod = sistema.getProductoPorCodigo(Integer.parseInt(textFieldProducto.getText()));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				if (prod != null)				
 				{
